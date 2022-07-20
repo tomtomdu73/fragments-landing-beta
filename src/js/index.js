@@ -1,4 +1,4 @@
-import { preloadFonts } from '../utils';
+import { preloadFonts } from './utils';
 import { RepeatTextScrollFx } from './repeatTextScrollFx';
 
 // Preload images and fonts and remove loader

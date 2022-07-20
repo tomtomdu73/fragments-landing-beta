@@ -1,4 +1,4 @@
-import { getHeight } from '../utils';
+import { getHeight } from './utils';
 import { gsap } from 'gsap';
 
 /**
@@ -12,9 +12,9 @@ export class RepeatTextScrollFx {
         // all text spans except the last one (this will be the centered one and doesn't translate
         words: null,
 	}
-	totalWords = 7;
-    tyIncrement = 40;
-	delayIncrement = 0.05;
+	totalWords = 9;
+    tyIncrement = 14;
+	delayIncrement = 0.08;
     scrollTimeline;
     observer;
 
@@ -85,12 +85,19 @@ export class RepeatTextScrollFx {
 		
         .to(this.DOM.words, {
 			duration: 1,
-			ease: 'sine.inOut',
+			ease: 'none',
+			startAt: {opacity: 0},
+			opacity: 1,
 			yPercent: (_,target) => target.dataset.ty,
-			xPercent: (_,target) => target.dataset.ty*.1,
-			opacity: 0,
 			delay: (_,target) => target.dataset.delay
-		})
+		}, 0)
+        .to(this.DOM.words, {
+			duration: 1,
+			ease: 'none',
+			opacity: 0,
+			yPercent: 0,
+			delay: (_,target) => target.dataset.delay
+		});
     }
     /**
      * Intersection Observer 
